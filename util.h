@@ -14,4 +14,20 @@ typedef struct{
 	int num2;
 }Operacao;
 
+typedef struct{
+	int num1;
+	int operacao;
+	int num2;
+}Op;
+
+
+typedef struct{
+	int soma;
+	int sub;
+	int mult;
+	int div;
+}QTDOperacoes;
+
+void questao ();
+
 #endif /* UTIL_H_ */
