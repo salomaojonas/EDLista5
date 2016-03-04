@@ -12,6 +12,7 @@ typedef struct{
 	int num1;
 	int op;
 	int num2;
+	int parentese;
 }Operacao;
 
 typedef struct{
@@ -20,13 +21,17 @@ typedef struct{
 	int num2;
 }Op;
 
-
 typedef struct{
 	int soma;
 	int sub;
 	int mult;
 	int div;
 }QTDOperacoes;
+
+typedef struct{
+	int op;
+	int qtd;
+}QTDParentese;
 
 void questao ();
 

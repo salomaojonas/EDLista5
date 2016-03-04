@@ -11,6 +11,10 @@
 #include <time.h>
 #include "util.h"
 
+void prioridades(Operacao *vetor, int qtdOperacoes){
+
+}
+
 Operacao preencheOperacao(int tipoOperacao){
 	Operacao op;
 	op.num1 = 1+(rand() % 100);
@@ -37,9 +41,24 @@ Operacao preencheOperacao(int tipoOperacao){
 	return op;
 }
 
-void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes){
+void insereParentese(Operacao *vetor,int qtdOperacoes ){
+	int x, z, conParentese = 0 ;
+		for(x=0;x<qtdOperacoes; x++){
+			z = (rand() % 2);
+			if(z>0){
+				vetor[x].parentese = 1; // coloca o parêntese na operação em questão.
+				conParentese+=1;
+			}
+		}
+		printf("\nQuantidade de parentese adicionados %d:", conParentese);
+}
+
+void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese[]){
 	Operacao *vetor;
 	int aux, contador=0;
+
+	printf("\nTem parêntese ? ");
+	parentese == 's' ? printf("SIM\n") : printf("NÃO\n");
 
 	vetor = malloc(qtdOperacoes*sizeof(Operacao));
 	if(operacoes.soma>0){
@@ -74,10 +93,18 @@ void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes){
 		}
 	}
 
+	if(parentese == 's'){
+		insereParentese(vetor , qtdOperacoes);
+	}
+
+
 	int x;
 	printf("\n*** OPERAÇÃO A SER CALCULADA ***\n");
 	for(x=0;x<qtdOperacoes;x++){
-		printf("%d %c %d", vetor[x].num1, vetor[x].op, vetor[x].num2);
+		if(vetor[x].parentese==1)
+			printf("(%d %c %d)", vetor[x].num1, vetor[x].op, vetor[x].num2);
+		else
+			printf("%d %c %d", vetor[x].num1, vetor[x].op, vetor[x].num2);
 		if(x<qtdOperacoes-1)
 			printf(" + ");
 	}
@@ -85,7 +112,7 @@ void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes){
 
 void questao(){
 	srand(time(NULL));
-
+	char parentese;
 	QTDOperacoes operacoes;
 	int qtdOperacoes = 0;
 
@@ -108,7 +135,12 @@ void questao(){
 	scanf("%d", &operacoes.div);
     __fpurge(stdin);
 	qtdOperacoes+=operacoes.div;
+    __fpurge(stdin);
 
-	geraOperacoes(operacoes, qtdOperacoes);
+	printf("Vai ter parêntese ?");
+	scanf("%c", &parentese);
+    __fpurge(stdin);
+
+	geraOperacoes(operacoes, qtdOperacoes, parentese);
 
 }
