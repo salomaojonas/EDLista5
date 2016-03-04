@@ -12,7 +12,39 @@
 #include "util.h"
 
 void prioridades(Operacao *vetor, int qtdOperacoes){
+	Operacao *vetorPrioridade, *vAuxiliar;
+	int aux = qtdOperacoes-1, x;
+	int iPrioridade = 0, contVAuxiliar = 0;
 
+	vAuxiliar = malloc(qtdOperacoes*sizeof(Operacao));
+	vetorPrioridade = malloc(qtdOperacoes*sizeof(Operacao));
+
+	for(x=aux;x>=0;x--){
+		if(vetor[x].parentese==1){
+			vetorPrioridade[iPrioridade] = vetor[x];
+			iPrioridade+=1;
+		}else{
+			vAuxiliar[contVAuxiliar] = vetor[x];
+			contVAuxiliar+=1;
+		}
+	}
+
+	int j;
+	for(j=0;j<contVAuxiliar;j++){
+		if(vAuxiliar[j].parentese==0){
+			vetorPrioridade[iPrioridade] = vAuxiliar[j];
+			iPrioridade+=1;
+
+		}
+	}
+
+	/**
+	int k;
+	printf("\n**  PRIORIDADE **\n");
+	for(k=0;k<iPrioridade;k++){
+		printf("\n%d %c %d", vetorPrioridade[k].num1, vetorPrioridade[k].op, vetorPrioridade[k].num2);
+	}
+	**/
 }
 
 Operacao preencheOperacao(int tipoOperacao){
@@ -56,7 +88,7 @@ void insereParentese(Operacao *vetor,int qtdOperacoes ){
 void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese[]){
 	Operacao *vetor;
 	int aux, contador=0;
-
+	printf("%c ???? ", parentese);
 	printf("\nTem parêntese ? ");
 	parentese == 's' ? printf("SIM\n") : printf("NÃO\n");
 
@@ -108,6 +140,9 @@ void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese[]){
 		if(x<qtdOperacoes-1)
 			printf(" + ");
 	}
+
+	prioridades(vetor, qtdOperacoes);
+
 }
 
 void questao(){
