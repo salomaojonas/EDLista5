@@ -11,6 +11,44 @@
 #include <time.h>
 #include "util.h"
 
+void calculaOperacao(Operacao *operacao, int qtdOperacoes, Operacao *vetorOriginal){
+	int resultado = 0, j, x, y, aux=0;
+	int *operacoesRealizadas;
+	operacoesRealizadas = malloc(qtdOperacoes*sizeof(int));
+	int conta = 0;
+	printf("\n***** CALCULANDO OPERAÇÕES SEGUNDO AS ORDENS DE PRIORIDADE*****\n");
+	for(j=0;conta<qtdOperacoes;j++){
+		char operador = operacao[j].op;
+
+		printf("\n%d %c %d = ", operacao[j].num1, operacao[j].op, operacao[j].num2);
+
+		switch (operador) {
+			case '+':
+				aux = operacao[j].num1 + operacao[j].num2;
+				conta+=1;
+				break;
+			case '-':
+				aux = operacao[j].num1 - operacao[j].num2;
+				conta+=1;
+				break;
+			case '*':
+				aux = operacao[j].num1 * operacao[j].num2;
+				conta+=1;
+				break;
+			case '/':
+				aux = operacao[j].num1 / operacao[j].num2;
+				conta+=1;
+
+				break;
+			default:
+				break;
+		}
+		printf(" %d ", aux);
+		resultado+= aux;
+	}
+	printf("\n***** RESPOSTA : %d ", resultado);
+}
+
 void prioridades(Operacao *vetor, int qtdOperacoes){
 	Operacao *vetorPrioridade, *vAuxiliar;
 	int aux = qtdOperacoes-1, x;
@@ -31,26 +69,23 @@ void prioridades(Operacao *vetor, int qtdOperacoes){
 
 	int j;
 	for(j=0;j<contVAuxiliar;j++){
-		if(vAuxiliar[j].parentese==0){
-			vetorPrioridade[iPrioridade] = vAuxiliar[j];
-			iPrioridade+=1;
-
-		}
+		vetorPrioridade[iPrioridade] = vAuxiliar[j];
+		iPrioridade+=1;
 	}
 
-	/**
 	int k;
-	printf("\n**  PRIORIDADE **\n");
+	printf("\n***** ORDEM DE PRIORIDADE DAS OPERAÇÕES*****\n");
 	for(k=0;k<iPrioridade;k++){
 		printf("\n%d %c %d", vetorPrioridade[k].num1, vetorPrioridade[k].op, vetorPrioridade[k].num2);
 	}
-	**/
+	calculaOperacao(vetorPrioridade, qtdOperacoes, vetor);
+
 }
 
 Operacao preencheOperacao(int tipoOperacao){
 	Operacao op;
-	op.num1 = 1+(rand() % 100);
-	op.num2 = 1+(rand() % 100);
+	op.num1 = 1+(rand() % 20);
+	op.num2 = 1+(rand() % 20);
 	switch (tipoOperacao) {
 		case 43:
 			op.op = '+';
@@ -131,7 +166,7 @@ void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese[]){
 
 
 	int x;
-	printf("\n*** OPERAÇÃO A SER CALCULADA ***\n");
+	printf("\n***** OPERAÇÃO A SER CALCULADA *****\n");
 	for(x=0;x<qtdOperacoes;x++){
 		if(vetor[x].parentese==1)
 			printf("(%d %c %d)", vetor[x].num1, vetor[x].op, vetor[x].num2);
