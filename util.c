@@ -121,7 +121,6 @@ void insereParentese(Operacao *vetor,int qtdOperacoes ){
 void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese){
 	Operacao *vetor;
 	int aux, contador=0;
-	printf("%c ???? ", parentese);
 	printf("\nTem parêntese ? ");
 	parentese == 's' ? printf("SIM\n") : printf("NÃO\n");
 
