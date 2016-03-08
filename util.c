@@ -5,16 +5,14 @@
  *      Author: salomao
  */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include "util.h"
 
 void calculaOperacao(Operacao *operacao, int qtdOperacoes, Operacao *vetorOriginal){
-	int resultado = 0, j, x, y, aux=0;
-	int *operacoesRealizadas;
-	operacoesRealizadas = malloc(qtdOperacoes*sizeof(int));
+	int resultado = 0, j, aux=0;
 	int conta = 0;
 	printf("\n***** CALCULANDO OPERAÇÕES SEGUNDO AS ORDENS DE PRIORIDADE*****\n");
 	for(j=0;conta<qtdOperacoes;j++){
@@ -120,7 +118,7 @@ void insereParentese(Operacao *vetor,int qtdOperacoes ){
 		printf("\nQuantidade de parentese adicionados %d:", conParentese);
 }
 
-void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese[]){
+void geraOperacoes(QTDOperacoes operacoes, int qtdOperacoes, char parentese){
 	Operacao *vetor;
 	int aux, contador=0;
 	printf("%c ???? ", parentese);
