@@ -16,12 +16,6 @@ typedef struct{
 }Operacao;
 
 typedef struct{
-	int num1;
-	int operacao;
-	int num2;
-}Op;
-
-typedef struct{
 	int soma;
 	int sub;
 	int mult;
@@ -34,5 +28,15 @@ typedef struct{
 }QTDParentese;
 
 void questao ();
+
+void geraOperacoes (QTDOperacoes, int, char);
+
+Operacao preencheOperacao (int);
+
+void insereParentese (Operacao *,int);
+
+void prioridades (Operacao *, int);
+
+void calculaOperacao (Operacao *, int, Operacao *);
 
 #endif /* UTIL_H_ */
