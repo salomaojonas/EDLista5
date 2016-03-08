@@ -5,7 +5,9 @@
  *      Author: salomao
  */
 
+#include "util.h"
 
 int main(){
 	questao();
+	return 0;
 }
